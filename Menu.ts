@@ -1,12 +1,21 @@
+import { Conta } from 'model/Conta';
 import * as readlineSync from 'readline-sync';
 import { colors } from './src/util/Colors';
-import { Conta } from './src/model/Conta'; 
 import { ContaCorrente } from './src/model/ContaCorrente';
 import { ContaPoupanca } from './src/model/ContaPoupanca';
+import { ContaController } from './controller/ContaController';
 
 export function main () {
 
-    let opcao: number;
+    //instancia da classe Contacontroller
+    let Contas: ContaController = new ContaController();
+
+    //variaveis auxiliares
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+    let titular: string;
+    const tiposContas = ['Conta Corrente','Conta Poupanca']; 
+
+    //let opcao: number;
     
    // Objeto da Classe ContaCorrente (Teste)
     const contacorrente: ContaCorrente = new ContaCorrente(2, 123, 1, "Mariana", 15000, 1000);
@@ -61,11 +70,39 @@ export function main () {
         switch (opcao) {
             case 1:
                 console.log(colors.fg.whitestrong, "\n\nCriar Conta\n\n", colors.reset);
+                  console.log("Digite o Número da agência: ");
+    agencia = readlineSync.questionInt("");
+    
+    console.log("Digite o Nome do Titular da conta: ");
+    titular = readlineSync.question("");
+    
+    console.log("\nDigite o tipo da Conta: ");
+    tipo = readlineSync.keyInSelect(tiposContas, "", {cancel: false}) + 1;
+    
+    console.log("\nDigite o Saldo da conta (R$): ");
+    saldo = readlineSync.questionFloat("");
+    
+    switch (tipo) {
+        case 1:
+            console.log("Digite o Limite da conta (R$): ");
+            limite = readlineSync.questionFloat("");
+            Contas.cadastrar(
+                new ContaCorrente(Contas.gerarNumero(), agencia, tipo, titular, saldo, limite));
+            break;
+        case 2:
+            console.log("Digite o Dia do aniversário da Conta Poupança: ");
+            aniversario = readlineSync.questionInt("");
+            Contas.cadastrar(new ContaPoupanca(Contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario));
+            break;
+    }
+    
                 
                 keyPress()
                 break;
             case 2:
                 console.log(colors.fg.whitestrong, "\n\nListar todas as Contas\n\n", colors.reset);
+
+                Contas.listarTodas();
 
                 keyPress()
                 break;

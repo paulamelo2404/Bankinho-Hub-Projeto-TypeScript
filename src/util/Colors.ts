@@ -39,5 +39,8 @@ export const colors = {
         magentabright: "\x1b[0;105m",
         cyanbright: "\x1b[0;106m",
         whitebright: "\x1b[0;107m"
+
+
     }
+   
 };
