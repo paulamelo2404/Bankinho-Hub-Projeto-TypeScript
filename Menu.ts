@@ -3,7 +3,7 @@ import * as readlineSync from 'readline-sync';
 import { colors } from './src/util/Colors';
 import { ContaCorrente } from './src/model/ContaCorrente';
 import { ContaPoupanca } from './src/model/ContaPoupanca';
-import { ContaController } from './controller/ContaController';
+import { ContaController } from './src/controller/ContaController';
 
 export function main () {
 
