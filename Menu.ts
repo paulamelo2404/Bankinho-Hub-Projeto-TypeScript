@@ -71,16 +71,16 @@ export function main () {
             case 1:
                 console.log(colors.fg.whitestrong, "\n\nCriar Conta\n\n", colors.reset);
                   console.log("Digite o Número da agência: ");
-    agencia = readlineSync.questionInt("");
+                 agencia = readlineSync.questionInt("");
     
-    console.log("Digite o Nome do Titular da conta: ");
-    titular = readlineSync.question("");
+                console.log("Digite o Nome do Titular da conta: ");
+                titular = readlineSync.question("");
     
-    console.log("\nDigite o tipo da Conta: ");
-    tipo = readlineSync.keyInSelect(tiposContas, "", {cancel: false}) + 1;
+                console.log("\nDigite o tipo da Conta: ");
+                tipo = readlineSync.keyInSelect(tiposContas, "", {cancel: false}) + 1;
     
-    console.log("\nDigite o Saldo da conta (R$): ");
-    saldo = readlineSync.questionFloat("");
+                console.log("\nDigite o Saldo da conta (R$): ");
+                saldo = readlineSync.questionFloat("");
     
     switch (tipo) {
         case 1:
@@ -106,21 +106,73 @@ export function main () {
 
                 keyPress()
                 break;
+
+
             case 3:
-                console.log(colors.fg.whitestrong, "\n\nConsultar dados da Conta - por número\n\n", colors.reset);
+                console.log(colors.fg.whitestrong, "\n\nConsultar dados da Conta - por número\n\n",
+                     colors.reset);
+
+                console.log ('Digite o numero da conta: ');
+                numero = readlineSync.questionInt('');
+                Contas.procurarPorNumero(numero);
 
                 keyPress()
                 break;
+
+
             case 4:
-                console.log(colors.fg.whitestrong, "\n\nAtualizar dados da Conta\n\n", colors.reset);
+                 console.log(colors.fg.whitestrong, "\n\nAtualizar dados da Conta\n\n", colors.reset);
 
-                keyPress()
+            console.log("Digite o número da Conta: ");
+            numero = readlineSync.questionInt("");
+
+            let conta = Contas.buscarNoArray(numero);
+
+            if (conta != null) {
+            console.log("Digite o Número da agência: ");
+            agencia = readlineSync.questionInt("");
+
+            console.log("Digite o Nome do Titular da conta: ");
+            titular = readlineSync.question("");
+
+            tipo = conta.tipo;
+
+           console.log("\nDigite o Saldo da conta (R$): ");
+           saldo = readlineSync.questionFloat("");
+
+           switch (tipo) {
+           case 1:
+           console.log("Digite o Limite da conta (R$): ");
+           limite = readlineSync.questionFloat("");
+           Contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
+           break;
+           case 2:
+           console.log("Digite o Dia do aniversário da conta Poupança: ");
+           aniversario = readlineSync.questionInt("");
+         Contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
+         break;
+         }
+         } else {
+       console.log(colors.fg.red, "\n\nA Conta numero: " + numero + " não foi encontrada!", colors.reset);
+        }
+
+                keyPress();
                 break;
+
+
             case 5:
-                console.log(colors.fg.whitestrong, "\n\nApagar uma Conta\n\n", colors.reset);
+               console.log(colors.fg.whitestrong, "\n\nApagar uma Conta\n\n", colors.reset);
 
-                keyPress()
-                break;
+               console.log("Digite o número da Conta: ");
+               numero = readlineSync.questionInt("");
+               Contas.deletar(numero);
+
+               keyPress();
+               break;
+
+
+
+
             case 6:
                 console.log(colors.fg.whitestrong, "\n\nSaque\n\n", colors.reset);
 

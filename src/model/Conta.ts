@@ -1,4 +1,7 @@
 export abstract class Conta {
+    static numero(numero: any) {
+        throw new Error("Method not implemented.");
+    }
 
     private _numero: number;
     private _agencia: number;
