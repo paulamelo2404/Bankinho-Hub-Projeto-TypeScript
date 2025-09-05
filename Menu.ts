@@ -11,7 +11,7 @@ export function main () {
     let Contas: ContaController = new ContaController();
 
     //variaveis auxiliares
-    let opcao, numero, agencia, tipo, saldo, limite, aniversario: number;
+    let opcao, numero, agencia, tipo, saldo, limite, aniversario, valor, numeroDestino: number;
     let titular: string;
     const tiposContas = ['Conta Corrente','Conta Poupanca']; 
 
@@ -82,19 +82,20 @@ export function main () {
                 console.log("\nDigite o Saldo da conta (R$): ");
                 saldo = readlineSync.questionFloat("");
     
-    switch (tipo) {
-        case 1:
-            console.log("Digite o Limite da conta (R$): ");
-            limite = readlineSync.questionFloat("");
-            Contas.cadastrar(
-                new ContaCorrente(Contas.gerarNumero(), agencia, tipo, titular, saldo, limite));
-            break;
-        case 2:
-            console.log("Digite o Dia do aniversário da Conta Poupança: ");
-            aniversario = readlineSync.questionInt("");
-            Contas.cadastrar(new ContaPoupanca(Contas.gerarNumero(), agencia, tipo, titular, saldo, aniversario));
-            break;
-    }
+        switch (tipo) {
+             case 1:
+                 console.log("Digite o Limite da conta (R$): ");
+                 limite = readlineSync.questionFloat("");
+                 Contas.cadastrar(
+                 new ContaCorrente(Contas.gerarNumero(), agencia, tipo, titular, saldo, limite));
+                break;
+                case 2:
+                console.log("Digite o Dia do aniversário da Conta Poupança: ");
+                aniversario = readlineSync.questionInt("");
+                Contas.cadastrar(new ContaPoupanca(Contas.gerarNumero(), agencia, 
+                tipo, titular, saldo, aniversario));
+                break;
+                }
     
                 
                 keyPress()
@@ -109,85 +110,113 @@ export function main () {
 
 
             case 3:
-                console.log(colors.fg.whitestrong, "\n\nConsultar dados da Conta - por número\n\n",
-                     colors.reset);
+                console.log(colors.fg.whitestrong, "\n\nConsultar dados da Conta - por numero\n\n"
+               , colors.reset);
 
-                console.log ('Digite o numero da conta: ');
-                numero = readlineSync.questionInt('');
+                console.log("Digite o numero da Conta: ");
+                numero = readlineSync.questionInt("");
                 Contas.procurarPorNumero(numero);
 
-                keyPress()
+                keyPress();
                 break;
 
 
             case 4:
                  console.log(colors.fg.whitestrong, "\n\nAtualizar dados da Conta\n\n", colors.reset);
 
-            console.log("Digite o número da Conta: ");
-            numero = readlineSync.questionInt("");
+                 console.log("Digite o número da Conta: ");
+                 numero = readlineSync.questionInt("");
+   
+                 let conta = Contas.buscarNoArray(numero);
 
-            let conta = Contas.buscarNoArray(numero);
+                if (conta != null) {
+                console.log("Digite o Número da agência: ");
+                agencia = readlineSync.questionInt("");
+  
+                console.log("Digite o Nome do Titular da conta: ");
+                titular = readlineSync.question("");
 
-            if (conta != null) {
-            console.log("Digite o Número da agência: ");
-            agencia = readlineSync.questionInt("");
+                tipo = conta.tipo;
 
-            console.log("Digite o Nome do Titular da conta: ");
-            titular = readlineSync.question("");
-
-            tipo = conta.tipo;
-
-           console.log("\nDigite o Saldo da conta (R$): ");
-           saldo = readlineSync.questionFloat("");
-
-           switch (tipo) {
-           case 1:
-           console.log("Digite o Limite da conta (R$): ");
-           limite = readlineSync.questionFloat("");
-           Contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
-           break;
-           case 2:
-           console.log("Digite o Dia do aniversário da conta Poupança: ");
-           aniversario = readlineSync.questionInt("");
-         Contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
-         break;
-         }
-         } else {
-       console.log(colors.fg.red, "\n\nA Conta numero: " + numero + " não foi encontrada!", colors.reset);
-        }
-
-                keyPress();
+                console.log("\nDigite o Saldo da conta (R$): ");
+                saldo = readlineSync.questionFloat("");
+ 
+                switch (tipo) {
+                case 1:
+                console.log("Digite o Limite da conta (R$): ");
+                limite = readlineSync.questionFloat("");
+                Contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite));
                 break;
+                case 2:
+                console.log("Digite o Dia do aniversário da conta Poupança: ");
+                aniversario = readlineSync.questionInt("");
+                Contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario));
+                break;
+                }
+                } else {
+                console.log(colors.fg.red, "\n\nA Conta numero: " + numero + 
+               " não foi encontrada!", colors.reset);
+               }
 
+                 keyPress();
+                 break;
 
             case 5:
-               console.log(colors.fg.whitestrong, "\n\nApagar uma Conta\n\n", colors.reset);
+                 console.log(colors.fg.whitestrong, "\n\nApagar uma Conta\n\n", colors.reset);
 
-               console.log("Digite o número da Conta: ");
-               numero = readlineSync.questionInt("");
-               Contas.deletar(numero);
-
-               keyPress();
-               break;
-
-
-
+                 console.log("Digite o número da Conta: ");
+                 numero = readlineSync.questionInt("");
+                 Contas.deletar(numero);
+  
+                keyPress();
+                break;
 
             case 6:
                 console.log(colors.fg.whitestrong, "\n\nSaque\n\n", colors.reset);
 
+                console.log("Digite o número da Conta: ");
+                numero = readlineSync.questionInt("");
+
+                console.log("\nDigite o valor do Saque (R$): ");
+                valor = readlineSync.questionFloat("");
+
+                Contas.sacar(numero, valor);
+
                 keyPress()
                 break;
+
             case 7:
                 console.log(colors.fg.whitestrong, "\n\nDepósito\n\n", colors.reset);
 
-                keyPress()
-                break;
-            case 8:
-                console.log(colors.fg.whitestrong, "\n\nTransferência entre Contas\n\n", colors.reset);
+                console.log("Digite o número da Conta: ");
+                numero = readlineSync.questionInt("");
+
+                console.log("\nDigite o valor do Depósito (R$): ");
+                valor = readlineSync.questionFloat("");
+
+                Contas.depositar(numero, valor);
 
                 keyPress()
                 break;
+
+            case 8:
+                console.log(colors.fg.whitestrong, "\n\nTransferência entre Contas\n\n", colors.reset);
+
+                console.log("Digite o número da Conta de Origem: ");
+                numero = readlineSync.questionInt("");
+
+                console.log("Digite o número da Conta de Destino: ");
+                numeroDestino = readlineSync.questionInt("");
+
+                console.log("\nDigite o valor do Depósito (R$): ");
+                valor = readlineSync.questionFloat("");
+ 
+                Contas.transferir(numero, numeroDestino, valor);
+               
+               keyPress()
+                 break;
+
+
             default:
                 console.log(colors.fg.whitestrong, "\nOpção Inválida!\n", colors.reset);
 
@@ -206,8 +235,9 @@ export function main () {
 export function sobre(): void {
     console.log("\n*****************************************************");
     console.log("Projeto Desenvolvido por: Paula Melo ");
+    console.log("paulamelo2404@gmail.com");
     console.log("Generation Brasil - generation@generation.org");
-    console.log("github.com/conteudoGeneration");
+    console.log("github.com/paulamelo2404");
     console.log("*****************************************************");
 }
 function keyPress(): void {
