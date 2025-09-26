@@ -145,10 +145,6 @@ Contribuições são bem-vindas! Siga estos passos:
    ```
 5. **Abra um Pull Request**
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
-
 ## 👨‍💻 Desenvolvedora
 
 - **Paula Melo** - [GitHub](https://github.com/paulamelo2404) - Desenvolvimento e arquitetura
@@ -161,7 +157,7 @@ Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
 
 ---
 
-**Bankinho Hub** - Simplificando suas operações bancárias com tecnologia! 💙🚀
+**Bankinho Hub** - Aqui seu dinheiro descansa tranquilo! 💙🚀
 
 ---
 
