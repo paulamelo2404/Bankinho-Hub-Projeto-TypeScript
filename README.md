@@ -1,137 +1,172 @@
-🏦 Bankinho Hub
-<p align="center"> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript"> <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js"> <img src="https://img.shields.io/badge/Architecture-MVC-blue?style=for-the-badge" alt="MVC Architecture"> <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License MIT"> </p>
-Bankinho Hub é um sistema bancário completo desenvolvido em TypeScript seguindo a arquitetura MVC (Model-View-Controller). Criado como projeto do bootcamp da Generation Brasil, oferece uma experiência robusta de simulação bancária com diferentes tipos de conta e operações financeiras.
+# 🏦 Bankinho Hub
 
-✨ Funcionalidades
-🏦 Tipos de Conta
-💳 Conta Corrente: Operações bancárias padrão com limite especial
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Architecture-MVC-blue?style=for-the-badge" alt="MVC Architecture">
+  <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="License MIT">
+</p>
 
-💰 Conta Poupança: Rendimentos sobre o saldo disponível
+## 📋 Sobre o Projeto
 
-🔄 Operações Bancárias
-👤 Cadastro de Contas: Criação de novas contas correntes e poupanças
+O **Bankinho Hub** é um sistema bancário completo desenvolvido em TypeScript como projeto do bootcamp da Generation Brasil. Seguindo a arquitetura MVC, o sistema oferece uma experiência intuitiva e colorida para simulação de operações bancárias, com dois tipos de conta e funcionalidades essenciais.
 
-💸 Depósitos: Adição segura de fundos às contas
+## ✨ Funcionalidades
 
-📤 Saques: Retirada de valores com validações
+### 🏦 Tipos de Conta
+- **💳 Conta Corrente** - Operações bancárias com limite especial
+- **💰 Conta Poupança** - Conta com sistema de rendimentos
 
-🔄 Transferências: Envio de dinheiro entre contas do sistema
+### 🔄 Operações Bancárias
+- **👤 Cadastro de Contas** - Criação de novas contas correntes e poupanças
+- **💸 Depósitos** - Adição segura de fundos às contas
+- **📤 Saques** - Retirada de valores com validações de saldo
+- **🔄 Transferências** - Envio de dinheiro entre contas do sistema
+- **📊 Consultas** - Verificação de saldo e extrato detalhado
+- **📊 apagar** - exclusão de contas do sistema
+- **🎨 Interface Colorida** - Experiência visual aprimorada no terminal
 
-📊 Consultas: Verificação de saldo e extrato detalhado
+## 🏗️ Arquitetura do Projeto (MVC)
 
-🎨 Interface Colorida: Experiência visual aprimorada com cores no terminal
+O projeto segue o padrão **Model-View-Controller** para garantir organização e escalabilidade:
 
-🏗️ Arquitetura do Projeto (MVC)
-text
+### 📋 Model (Camada de Dados)
+- **`src/model/Conta.ts`** - Classe abstrata base
+- **`src/model/ContaCorrente.ts`** - Implementação para conta corrente
+- **`src/model/ContaPoupanca.ts`** - Implementação para conta poupança
+
+### 🎨 View (Camada de Interface)
+- **`src/Menu.ts`** - Interface principal do usuário
+
+### ⚙️ Controller (Camada de Lógica)
+- **`src/controller/ContaController.ts`** - Lógica de negócio das operações
+
+### 💾 Repository (Camada de Persistência)
+- **`src/repository/ContaRepository.ts`** - Gerenciamento de dados
+
+### 🎯 Utilitários
+- **`src/util/Colors.ts`** - Sistema de cores para o terminal
+
+## 📁 Estrutura de Arquivos
+
+```
 Bankinho-Hub-Projeto-TypeScript/
+│
 ├── src/
-│   ├── controller/           # Lógica de controle
+│   ├── controller/
 │   │   └── ContaController.ts
-│   ├── model/               # Modelos de dados
+│   ├── model/
 │   │   ├── Conta.ts
 │   │   ├── ContaCorrente.ts
 │   │   └── ContaPoupanca.ts
-│   ├── repository/          # Camada de dados
+│   ├── repository/
 │   │   └── ContaRepository.ts
-│   ├── util/               # Utilitários
+│   ├── util/
 │   │   └── Colors.ts
-│   └── Menu.ts             # View (Interface do usuário)
-├── node_modules/           # Dependências
+│   └── Menu.ts
+│
 ├── .gitignore
 ├── package.json
 ├── package-lock.json
 ├── tsconfig.json
 └── README.md
+```
 
-🚀 Como Executar
-Pré-requisitos
-Node.js (versão 14 ou superior)
+## 🚀 Como Executar
 
-npm ou yarn
+### Pré-requisitos
+- Node.js (versão 14 ou superior)
+- npm (Node Package Manager)
 
-Git
+### 📥 Instalação
 
-Instalação e Execução
-Clone o repositório
-
-bash
+1. **Clone o repositório**
+```bash
 git clone https://github.com/paulamelo2404/Bankinho-Hub-Projeto-TypeScript.git
 cd Bankinho-Hub-Projeto-TypeScript
-Instale as dependências
+```
 
-bash
+2. **Instale as dependências**
+```bash
 npm install
-Compile o projeto TypeScript
+```
 
-bash
+### 🎯 Execução
+
+**Opção 1: Compilar e executar**
+```bash
 npx tsc
-Execute a aplicação
-
-bash
 node dist/Menu.js
-⚡ Execução Rápida
-bash
-git clone https://github.com/paulamelo2404/Bankinho-Hub-Projeto-TypeScript.git
-cd Bankinho-Hub-Projeto-TypeScript
+```
+
+**Opção 2: Comando único**
+```bash
 npm install && npx tsc && node dist/Menu.js
-📋 Scripts Disponíveis
-json
-{
-  "scripts": {
-    "build": "tsc",
-    "start": "node dist/Menu.js",
-    "dev": "tsc && node dist/Menu.js"
-  }
-}
-Comandos úteis:
+```
 
-bash
-# Compilar e executar
+**Opção 3: Usando scripts do package.json**
+```bash
 npm run dev
+```
 
-# Apenas compilar
-npm run build
+## 📋 Scripts Disponíveis
 
-# Apenas executar
-npm start
+| Comando | Descrição |
+|---------|-----------|
+| `npm run dev` | Compila e executa o projeto |
+| `npm start` | Executa o projeto já compilado |
+| `npm run build` | Apenas compila o TypeScript |
 
-🛠️ Tecnologias e Padrões
-TypeScript: Linguagem principal com tipagem estática
+## 🛠️ Tecnologias Utilizadas
 
-Node.js: Ambiente de execução
+- **TypeScript** - Linguagem principal com tipagem estática
+- **Node.js** - Ambiente de execução JavaScript/TypeScript
+- readline-sync - Captura de entrada do usuário no terminal
+- **Arquitetura MVC** - Padrão de organização de código
+- **Git** - Controle de versão
+- **npm** - Gerenciador de pacotes
 
-Arquitetura MVC: Separação de concerns (Model-View-Controller)
+## 👥 Como Contribuir
 
-Repository Pattern: Camada de acesso a dados
+Contribuições são bem-vindas! Siga estos passos:
 
-Git: Controle de versão
+1. **Faça um Fork** do projeto
+2. **Crie uma Branch** para sua feature:
+   ```bash
+   git checkout -b feature/nova-funcionalidade
+   ```
+3. **Commit suas mudanças**:
+   ```bash
+   git commit -m 'feat: adiciona nova funcionalidade'
+   ```
+4. **Push para a Branch**:
+   ```bash
+   git push origin feature/nova-funcionalidade
+   ```
+5. **Abra um Pull Request**
 
-OOP: Programação Orientada a Objetos
+## 📄 Licença
 
-🎯 Estrutura de Classes
-Modelos (/model)
-Conta.ts: Classe abstrata base
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
-ContaCorrente.ts: Implementação de conta corrente
+## 👨‍💻 Desenvolvedora
 
-ContaPoupanca.ts: Implementação de conta poupança
+- **Paula Melo** - [GitHub](https://github.com/paulamelo2404) - Desenvolvimento e arquitetura
 
-Controller (/controller)
-ContaController.ts: Gerencia a lógica de negócio
+## 🙏 Agradecimentos
 
-Repository (/repository)
-ContaRepository.ts: Gerencia o armazenamento de dados
+- **Generation Brasil** - Pelo bootcamp e orientação técnica
+- **Instrutores e Colegas** - Pelo apoio durante o desenvolvimento
+- **Comunidade TypeScript** - Pela documentação e suporte
 
-Utilitários (/util)
-Colors.ts: Códigos ANSI para cores no terminal
+---
 
+**Bankinho Hub** - Simplificando suas operações bancárias com tecnologia! 💙🚀
 
-👨‍💻 Desenvolvedora
-Paula Melo - Desenvolvimento e arquitetura
+---
 
-🙏 Agradecimentos
-Generation Brasil - Pelo bootcamp e orientação
+<div align="center">
 
-Instrutores e Colegas - Pelo apoio durante o desenvolvimento
+*Desenvolvido com 💙 para o bootcamp Generation Brasil*
 
-Bankinho Hub - Aqui seu dinheiro descansa tranquilo! 💙✨
+</div>
